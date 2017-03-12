@@ -1,0 +1,67 @@
+.restaurant-pic {
+	height: 50vh;
+	background-image: url(../assets/pizza.jpg);
+	background-size: cover;
+	background-position: 0 40%;
+}
+
+.restaurant-info {
+	height: 50vh;
+}
+
+.reservation {
+	height: 25vh;
+}
+
+/* add a deli pattern background*/
+.reservation-form-container {
+	position: relative;
+	height: 100%;
+	background-image: url(../assets/brick.jpeg);
+	background-size: cover;
+	background-position: center;
+}
+
+.reservation-form {
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+}
+
+.restaurant-locator {
+	height: 50vh;
+}
+
+.navbar-brand {
+	font-family: "Lato";
+	font-size: 50px;
+	font-variant: normal;
+	font-weight: bold;
+	line-height: 33px;
+	text-transform: uppercase;
+	color: #ffffff;
+	letter-spacing: 3px;
+}
+
+#wrapper { position: relative; }
+#over_map {
+	padding: 10px 40px 40px 40px;
+	position: absolute;
+    left: 50%;
+    top: 120px;
+    bottom: 60px;
+    height: 300px;
+    width: 330px;
+    margin-left: -480px;
+    background: #fff;
+    color: #0e2046;
+    font-family: "Lato";
+    border: #0e2046 solid 1px;
+    font-size: 25px;
+ }
+
+ #over_map p{
+    font-family: "Lato";
+    font-size: 16px;
+ }
+
