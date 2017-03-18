@@ -9,20 +9,41 @@ var config = {
 };
 
 firebase.initializeApp(config);
+var database = firebase.database();
 
-$('.reservation-day li').click(function() {
-    reservationData.day = $(this).text();
+$('.reservation-day li a').click(function(e) {
+    var data = $(e.target).text();
+    $('.dropdown-toggle').text(data);
+    reservationData.day = data;
+
 });
 
-$(".reservations").on('submit', function(e) {
+$('.reservations').on('submit', function(e) {
     e.preventDefault();
     reservationData.name = $('.reservation-name').val();
     database.ref('reservations').push(reservationData);
 });
 
-$('#getReservations').submit(function(e) {
+$('#getReservations').on('submit', function(e) {
     e.preventDefault();
     this.submit();
+});
+
+// on initial load and addition of each reservation update the view
+database.ref('reservations').on('child_added', function(snapshot) {
+  // grab element to hook to
+  var reservationList = $('.reservation-list');
+  // get data from database
+  var reservations = snapshot.val();
+  // get your template from your script tag
+  var source   = $("#reservation-template").html();
+  // compile template
+  var template = Handlebars.compile(source);
+  // pass data to template to be evaluated within handlebars
+  // as the template is created
+  var reservationTemplate = template(reservations);
+  // append created templated
+  reservationList.append(reservationTemplate);
 });
 
 function initMap() {
@@ -93,7 +114,7 @@ function initMap() {
         }, {
             "featureType": "poi",
             "stylers": [{
-                "hue": "#00FF6A"
+                "hue": "#0e2046"
             }, {
                 "saturation": -1.0989010989011234
             }, {
@@ -110,10 +131,6 @@ function initMap() {
             lng: -73.9654415
         },
         map: map,
-        title: 'Lucys Pizzeria'
+        title: 'Lucy\'s Pizzeria'
     });
 }
-
-var myControl = document.getElementById('myTextDiv');
-map.controls[google.maps.ControlPosition.TOP_CENTER].push(myControl);
-
